@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Oto DAW Studio">
+<title>Oto DAW Studio</title>
+<style>
+:root{color-scheme:dark;--bg:#0d0f14;--panel:#171a22;--panel2:#202531;--line:#303746;--text:#edf0f6;--muted:#929aaa;--accent:#ed8755;--blue:#76aaff;--green:#65c99b;--red:#ff7474;--radius:13px;font:14px/1.45 -apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);min-height:100dvh}button,input,select{font:inherit}button{border:1px solid var(--line);border-radius:9px;background:var(--panel2);color:var(--text);padding:8px 11px;min-height:36px;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}button.primary,.active{background:var(--accent);border-color:var(--accent);color:#fff}button.danger{color:var(--red)}button.small{min-height:28px;padding:4px 8px;font-size:11px}button:active{filter:brightness(1.2)}input,select{accent-color:var(--accent)}input[type=range]{width:100%;min-width:55px}input[type=number],select{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:7px;padding:6px;min-width:0;width:100%}input[type=number]{font-variant-numeric:tabular-nums}.muted{color:var(--muted);font-size:11px}.app{max-width:1700px;margin:auto;padding:10px;display:flex;flex-direction:column;gap:9px}header,.transport,.panel,.track,.footer{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius)}header{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:9px 11px}.brand{font-size:17px;font-weight:800;letter-spacing:.2px;margin-right:8px}.brand b{color:var(--accent)}.spacer{flex:1}.filebtn{position:relative;overflow:hidden}.filebtn input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}.transport{display:flex;gap:7px;align-items:center;padding:9px;flex-wrap:wrap}.clock{margin-left:auto;font:700 15px ui-monospace,monospace;white-space:nowrap}.status{color:var(--muted);font-size:11px;width:100%;min-height:16px}.layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(360px,1fr);gap:9px;align-items:start}.left,.right{display:flex;flex-direction:column;gap:9px;min-width:0}.panel{padding:11px;min-width:0}.panel h2{font-size:13px;margin:0 0 10px;display:flex;align-items:center;justify-content:space-between;gap:7px}.panel h3{font-size:12px;margin:12px 0 7px;color:#d6dbe5}.tracklist{display:flex;flex-direction:column;gap:7px}.track{padding:8px;display:grid;grid-template-columns:minmax(120px,170px) minmax(0,1fr);gap:9px;min-height:112px;border-radius:10px;border-color:#333a49}.track.selected{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}.trackhead{min-width:0;display:flex;flex-direction:column;gap:5px}.tracktitle{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.trackmeta{font-size:10px;color:var(--muted)}.trackbuttons{display:flex;gap:4px;flex-wrap:wrap}.trackmix{display:grid;grid-template-columns:26px 1fr 30px;align-items:center;gap:4px;font-size:10px;color:var(--muted)}.trackmix output{font:10px ui-monospace,monospace;text-align:right;color:var(--text)}.wave{width:100%;height:100%;min-height:92px;display:block;border-radius:7px;background:#121722;touch-action:pan-y}.sectionhead{display:flex;align-items:center;gap:8px;justify-content:space-between;margin-bottom:8px}.control{display:grid;grid-template-columns:105px minmax(0,1fr) 58px;gap:8px;align-items:center;margin:7px 0;color:var(--muted);font-size:11px}.control output{font:11px ui-monospace,monospace;text-align:right;color:var(--text)}.control select{font-size:12px}.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.field{min-width:0;background:var(--panel2);border:1px solid #303746;border-radius:8px;padding:7px}.field label{display:block;font-size:10px;color:var(--muted);margin-bottom:4px}.field input,.field select{width:100%}.field output{display:block;font-size:10px;text-align:right;color:var(--text);font-variant-numeric:tabular-nums}.eqgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.eqband{border:1px solid var(--line);background:var(--panel2);border-radius:9px;padding:7px}.eqbandhead{display:flex;justify-content:space-between;align-items:center;font-size:11px;margin-bottom:6px}.eqparams{display:grid;grid-template-columns:1.1fr .9fr .9fr;gap:5px}.eqparams label{display:block;font-size:9px;color:var(--muted);margin-bottom:3px}.eqparams input{width:100%;padding:4px 2px;font-size:10px}.eqparams output{font-size:9px;display:block;text-align:right;color:var(--muted)}.checkrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:11px;color:var(--muted)}.checkrow label{display:flex;gap:5px;align-items:center}.meter{height:7px;background:#343b49;border-radius:9px;overflow:hidden}.meter b{display:block;height:100%;width:0;background:var(--green)}.footer{padding:9px 12px;display:flex;gap:9px;align-items:center;flex-wrap:wrap}.hint{font-size:10px;color:var(--muted);line-height:1.5}.divider{height:1px;background:var(--line);margin:10px 0}.pill{font-size:10px;color:var(--blue);border:1px solid #334760;padding:2px 6px;border-radius:99px}.hidden{display:none!important}.processing{opacity:.6;pointer-events:none}.wavewrap{position:relative;min-height:92px}.wavewrap .wave{position:absolute;inset:0;height:100%}.ph{position:absolute;top:0;bottom:0;left:calc(var(--ph,0)*1%);width:2px;margin-left:-1px;background:#fff;opacity:.85;pointer-events:none}#eqCurve{width:100%;height:110px;display:block;border-radius:8px;background:#121722;margin-bottom:8px}@media(max-width:1000px){.layout{grid-template-columns:1fr}.right{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}.right .wide{grid-column:1/-1}}@media(max-width:640px){.app{padding:7px}.brand{width:100%}.right{display:flex}.track{grid-template-columns:105px minmax(0,1fr);gap:6px;padding:6px}.trackmix{grid-template-columns:22px 1fr 28px}.control{grid-template-columns:88px minmax(0,1fr) 52px}.eqgrid{grid-template-columns:1fr}.clock{font-size:13px}.transport button{padding:7px 9px}.two{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+<header>
+  <div class="brand">♪ <b>Oto</b> DAW <span class="muted">STUDIO / Full Edition</span></div>
+  <button id="newProject">新規</button>
+  <button id="saveProject" class="primary">音声込み保存</button>
+  <button type="button" id="pickProject">プロジェクト読込</button><input id="projectInput" type="file" hidden>
+  <span class="spacer"></span><span class="pill" id="engineBadge">Web Audio</span>
+</header>
+<div class="transport">
+  <button type="button" id="pickInst">＋ 伴奏トラック</button><input id="instInput" type="file" accept="audio/*,.wav,.wave,.mp3,.m4a,.aac,.flac,.ogg,.oga,.opus,.aif,.aiff,.caf,.mp4,.webm" multiple hidden>
+  <button type="button" id="pickVocal">＋ ボーカルトラック</button><input id="vocalInput" type="file" accept="audio/*,.wav,.wave,.mp3,.m4a,.aac,.flac,.ogg,.oga,.opus,.aif,.aiff,.caf,.mp4,.webm" multiple hidden>
+  <button id="record" class="danger">● 録音</button><button id="play" class="primary">▶ 再生</button><button id="stop">■ 停止</button>
+  <button id="export">WAV書き出し</button><label class="muted" style="display:flex;gap:4px;align-items:center">録音遅延補正<input id="recLatency" type="number" min="0" max="600" step="1" value="0" style="width:64px">ms</label><span class="clock" id="clock">00:00.0 / 00:00.0</span>
+  <div class="status" id="status">伴奏またはボーカルを追加してください。マイク録音はHTTPSまたはlocalhostで利用できます。</div>
+</div>
+<div class="layout">
+  <main class="left">
+    <section class="panel">
+      <div class="sectionhead"><h2 style="margin:0">TRACK / ARRANGEMENT</h2><span class="muted" id="trackCount">0 tracks</span></div>
+      <div class="tracklist" id="trackList"><div class="muted">音声ファイルを読み込むとトラックがここに表示されます。</div></div>
+      <div class="hint" style="margin-top:8px">トラックを選択して編集します。M＝ミュート、S＝ソロ。波形をタップすると再生開始位置を指定できます。</div>
+    </section>
+    <section class="panel">
+      <h2>選択中トラック <span class="pill" id="selectedType">未選択</span></h2>
+      <div id="selectedInfo" class="muted">編集するボーカルトラックを選択してください。</div>
+      <div class="divider"></div>
+      <h3>Pitch Correction / AutoTune</h3>
+      <div class="two">
+        <div class="field"><label for="tuneKey">音階・キー</label><select id="tuneKey"><option value="chromatic">クロマチック</option><option value="C:maj">C Major</option><option value="G:maj">G Major</option><option value="D:maj">D Major</option><option value="A:maj">A Major</option><option value="E:maj">E Major</option><option value="B:maj">B Major</option><option value="F:maj">F Major</option><option value="Bb:maj">B♭ Major</option><option value="Eb:maj">E♭ Major</option><option value="Ab:maj">A♭ Major</option><option value="Db:maj">D♭ Major</option><option value="F#:maj">F♯ Major</option><option value="A:min">A Minor</option><option value="E:min">E Minor</option><option value="D:min">D Minor</option><option value="B:min">B Minor</option><option value="C:min">C Minor</option><option value="G:min">G Minor</option><option value="F:min">F Minor</option></select></div>
+        <div class="field"><label for="tuneAmount">補正量</label><input id="tuneAmount" type="range" min="0" max="100" value="85"><output id="tuneAmountOut">85%</output></div>
+      </div>
+      <div class="control"><span>Retune Speed</span><input id="tuneSpeed" type="range" min="1" max="100" value="80"><output id="tuneSpeedOut">80</output></div>
+      
+      <div class="switches" style="display:flex;gap:7px;margin-top:8px"><button id="applyTune" class="primary">選択トラックにピッチ補正を適用</button><button id="undoTrack">直前の処理を戻す</button></div>
+      <p class="hint">単音メロディ向けのオフライン・ピッチ補正です。グレイン式の時間領域ピッチシフターを使います。専用商用プラグインと同等の音質を保証するものではありません。倍音の強い音源や和音・コーラスでは誤検出しやすくなります。</p>
+      <div class="divider"></div>
+      <h3>High Precision Denoise / スペクトルノイズリダクション</h3>
+      <div class="two">
+        <div class="field"><label for="noiseStart">ノイズサンプル開始（秒）</label><input id="noiseStart" type="number" min="0" step="0.05" value="0"></div>
+        <div class="field"><label for="noiseEnd">ノイズサンプル終了（秒）</label><input id="noiseEnd" type="number" min="0.05" step="0.05" value="0.5"></div>
+      </div>
+      <div class="control"><span>Reduction</span><input id="denoiseAmount" type="range" min="0" max="100" value="65"><output id="denoiseAmountOut">65%</output></div>
+      <div class="control"><span>最大低減量</span><input id="denoiseFloor" type="range" min="6" max="40" value="22"><output id="denoiseFloorOut">22 dB</output></div>
+      <div class="switches" style="display:flex;gap:7px;margin-top:8px"><button id="autoNoise">ノイズ区間を自動検出</button><button id="applyDenoise" class="primary">ノイズ除去を適用</button></div>
+      <p class="hint">無音ではなく「声が入っていない区間」をノイズサンプルに指定します。一定の環境ノイズに有効です。残響・大きな環境音・複数人の声を完全分離するAI処理ではありません。</p>
+    </section>
+  </main>
+  <aside class="right">
+    <section class="panel wide">
+      <h2>完全パラメトリックEQ <button id="eqEnable" class="active small">ON</button></h2>
+      <canvas id="eqCurve"></canvas>
+      <div class="control"><span>High Pass</span><input id="hpf" type="range" min="20" max="500" value="70"><output id="hpfOut">70 Hz</output></div>
+      <div class="control"><span>Low Pass</span><input id="lpf" type="range" min="2000" max="20000" value="20000"><output id="lpfOut">20 kHz</output></div>
+      <div class="eqgrid" id="eqBands"></div>
+      <p class="hint">8バンドのベル型EQ。各バンドごとに中心周波数（20 Hz–20 kHz）、Gain（±24 dB）、Q（0.1–18）を独立操作できます。</p>
+    </section>
+    <section class="panel">
+      <h2>コンプレッサー <button id="compEnable" class="active small">ON</button></h2>
+      <div class="control"><span>Threshold</span><input id="threshold" type="range" min="-60" max="0" value="-24"><output id="thresholdOut">-24 dB</output></div>
+      <div class="control"><span>Ratio</span><input id="ratio" type="range" min="1" max="20" step=".5" value="3"><output id="ratioOut">3:1</output></div>
+      <div class="control"><span>Attack</span><input id="attack" type="range" min="0.1" max="100" step=".1" value="10"><output id="attackOut">10 ms</output></div>
+      <div class="control"><span>Release</span><input id="release" type="range" min="10" max="1000" value="180"><output id="releaseOut">180 ms</output></div>
+      <div class="control"><span>Makeup</span><input id="makeup" type="range" min="0" max="18" value="2"><output id="makeupOut">2 dB</output></div>
+      <div class="meter"><b id="grMeter"></b></div><div class="hint">Gain reduction（概算）</div>
+    </section>
+    <section class="panel">
+      <h2>サチュレーション <button id="satEnable" class="small">OFF</button></h2>
+      <div class="control"><span>Drive</span><input id="drive" type="range" min="0" max="24" value="4"><output id="driveOut">4 dB</output></div>
+      <div class="control"><span>Mix</span><input id="satMix" type="range" min="0" max="100" value="20"><output id="satMixOut">20%</output></div>
+    </section>
+    <section class="panel">
+      <h2>Reverb <button id="revEnable" class="active small">ON</button></h2>
+      <div class="control"><span>Type</span><select id="revType"><option value="room">Room</option><option value="hall" selected>Hall</option><option value="plate">Plate</option></select><output></output></div>
+      <div class="control"><span>Wet</span><input id="revWet" type="range" min="0" max="100" value="18"><output id="revWetOut">18%</output></div>
+      <div class="control"><span>Pre-delay</span><input id="preDelay" type="range" min="0" max="150" value="25"><output id="preDelayOut">25 ms</output></div>
+    </section>
+    <section class="panel">
+      <h2>Delay <button id="delayEnable" class="small">OFF</button></h2>
+      <div class="control"><span>Time</span><input id="delayTime" type="range" min="20" max="1200" value="300"><output id="delayTimeOut">300 ms</output></div>
+      <div class="control"><span>Feedback</span><input id="feedback" type="range" min="0" max="85" value="25"><output id="feedbackOut">25%</output></div>
+      <div class="control"><span>Wet</span><input id="delayWet" type="range" min="0" max="100" value="12"><output id="delayWetOut">12%</output></div>
+    </section>
+    <section class="panel">
+      <h2>Master / Limiter</h2>
+      <div class="control"><span>Output</span><input id="masterVol" type="range" min="0" max="150" value="90"><output id="masterVolOut">90%</output></div>
+      <div class="control"><span>Ceiling</span><input id="ceiling" type="range" min="-6" max="0" step=".1" value="-1"><output id="ceilingOut">-1.0 dB</output></div>
+      <div class="meter"><b id="peakMeter"></b></div><div class="hint">Peak meter（概算）</div>
+    </section>
+  </aside>
+</div>
+<div class="footer"><strong>EXPORT</strong><select id="exportMode"><option value="mix">Stereo Mix</option><option value="selected">選択トラック</option><option value="vocal">Vocal Stem</option><option value="inst">Instrumental Stem</option></select><select id="bitDepth"><option value="16">WAV 16-bit PCM</option><option value="24" selected>WAV 24-bit PCM</option><option value="32f">WAV 32-bit Float</option></select><span class="muted">44.1 / 48 kHz・Stereo WAV</span><span class="spacer"></span><span class="muted">Oto DAW Studio / Local processing</span></div>
+</div>
+<script>
+'use strict';
+const $=s=>document.querySelector(s);
+const state={eqOn:true,compOn:true,satOn:false,revOn:true,delayOn:false,masterVol:.9,ceiling:-1};
+let tracks=[],selectedId=null,ctx=null,graph=null,sources=[],playing=false,playOffset=0,startAt=0,raf=0,recording=false,recStream=null,recNode=null,recChunks=[],recWorklet=false,workletURL=null,recStartOffset=0,recT0=0,recPlayT=0;
+const say=t=>$('#status').textContent=t;
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const fmt=s=>{s=Math.max(0,s||0);return `${String(Math.floor(s/60)).padStart(2,'0')}:${(s%60).toFixed(1).padStart(4,'0')}`};
+const getDuration=arr=>Math.max(0,...arr.map(t=>t.buffer?.duration||0));
+function audio(){if(!ctx)ctx=new (window.AudioContext||window.webkitAudioContext)({latencyHint:'interactive'});if(ctx.state==='suspended')ctx.resume().catch(()=>{});return ctx}
+function uid(){return 't'+Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function controlSnapshot(){const ids=['hpf','lpf','threshold','ratio','attack','release','makeup','drive','satMix','revWet','preDelay','revType','delayTime','feedback','delayWet','masterVol','ceiling','tuneKey','tuneAmount','tuneSpeed','denoiseAmount','denoiseFloor','noiseStart','noiseEnd','recLatency'];for(let i=0;i<8;i++){ids.push(`eqf${i}`,`eqg${i}`,`eqq${i}`,`eqon${i}`)}return Object.fromEntries(ids.map(id=>{const el=$('#'+id);return [id,el.type==='checkbox'?el.checked:el.value]}))}
+function restoreControls(obj={}){for(const [id,val] of Object.entries(obj)){const el=$('#'+id);if(el){if(el.type==='checkbox')el.checked=!!val;else el.value=val}}syncOutputs();syncToggleButtons();applyGraphSettings();updateEqToggle()}
+function trackById(id){return tracks.find(t=>t.id===id)}
+function selectedTrack(){return trackById(selectedId)}
+function addTrack(buffer,name,type){const t={id:uid(),buffer,name,type,volume:type==='inst'?.8:1,pan:0,mute:false,solo:false,undoBuffer:null};tracks.push(t);if(!selectedId||type==='vocal')selectedId=t.id;renderTracks();refreshSelected();return t}
+function parseWav(ab){
+ const v=new DataView(ab);if(ab.byteLength<44||v.getUint32(0)!==0x52494646||v.getUint32(8)!==0x57415645)return null;
+ let o=12,f=null,dOff=0,dLen=0;
+ while(o+8<=ab.byteLength){const id=v.getUint32(o),sz=v.getUint32(o+4,true);
+  if(id===0x666d7420){f={tag:v.getUint16(o+8,true),ch:v.getUint16(o+10,true),sr:v.getUint32(o+12,true),bits:v.getUint16(o+22,true)};if(f.tag===0xFFFE&&sz>=26)f.tag=v.getUint16(o+32,true)}
+  else if(id===0x64617461){dOff=o+8;dLen=Math.min(sz,ab.byteLength-dOff);break}
+  o+=8+sz+(sz&1)}
+ const bps=f?f.bits/8:0;if(!f||!dOff||!f.ch||(f.tag!==1&&f.tag!==3)||![1,2,3,4,8].includes(bps))return null;
+ const n=Math.floor(dLen/(bps*f.ch)),buf=audio().createBuffer(Math.min(f.ch,2),n,f.sr),
+ rd=bps===1?p=>(v.getUint8(p)-128)/128:bps===2?p=>v.getInt16(p,true)/32768:bps===3?p=>{let z=v.getUint8(p)|v.getUint8(p+1)<<8|v.getUint8(p+2)<<16;if(z&8388608)z-=16777216;return z/8388608}:f.tag===3?(bps===4?p=>v.getFloat32(p,true):p=>v.getFloat64(p,true)):p=>v.getInt32(p,true)/2147483648;
+ for(let k=0;k<buf.numberOfChannels;k++){const d=buf.getChannelData(k);for(let i=0,p=dOff+k*bps;i<n;i++,p+=bps*f.ch)d[i]=rd(p)}
+ return buf}
+async function decodeAB(ab){
+ if(!ab.byteLength)throw Error('ファイルが空です（iCloud上のファイルは先にダウンロードしてください）');
+ try{return await new Promise((res,rej)=>{const p=audio().decodeAudioData(ab.slice(0),res,rej);if(p&&p.catch)p.catch(()=>{})})}
+ catch(e){const w=parseWav(ab);if(w)return w;throw e}}
+async function loadFiles(files,type){
+ files=[...(files||[])];if(!files.length)return;audio();
+ for(const file of files){
+  try{say(`${file.name} を読み込み中…（${(file.size/1048576).toFixed(1)} MB）`);await yieldUI();
+   const b=await decodeAB(await file.arrayBuffer());addTrack(b,file.name,type);say(`${file.name} を読み込みました`)}
+  catch(e){console.error(e);say(`${file.name}: 読み込めません（${e?.name||'Error'} / ${file.type||'形式不明'} / ${(file.size/1048576).toFixed(1)} MB）。${e?.message||''} WAV・MP3・M4A・AAC・FLACで試してください`)}
+ }
+ refreshAll()}
+function selectedStateText(t){return t?`${t.type==='vocal'?'ボーカル':'伴奏'} / ${t.buffer.numberOfChannels}ch / ${t.buffer.sampleRate} Hz / ${fmt(t.buffer.duration)}`:'未選択'}
+function renderTracks(){const root=$('#trackList');root.innerHTML='';if(!tracks.length){root.innerHTML='<div class="muted">音声ファイルを読み込むとトラックがここに表示されます。</div>'}for(let i=0;i<tracks.length;i++){const t=tracks[i],el=document.createElement('section');el.className='track'+(t.id===selectedId?' selected':'');el.dataset.id=t.id;el.innerHTML=`<div class="trackhead"><div class="tracktitle" title="${escapeHtml(t.name)}">${String(i+1).padStart(2,'0')}　${escapeHtml(t.name)}</div><div class="trackmeta">${t.type==='vocal'?'VOCAL':'INSTRUMENT'} · ${fmt(t.buffer.duration)}</div><div class="trackbuttons"><button class="small mute ${t.mute?'active':''}">M</button><button class="small solo ${t.solo?'active':''}">S</button><button class="small remove danger">削除</button></div><div class="trackmix"><span>VOL</span><input class="vol" type="range" min="0" max="1.5" step=".01" value="${t.volume}"><output>${Math.round(t.volume*100)}%</output></div><div class="trackmix"><span>PAN</span><input class="pan" type="range" min="-1" max="1" step=".01" value="${t.pan}"><output>${t.pan.toFixed(2)}</output></div></div><div class="wavewrap"><canvas class="wave"></canvas><i class="ph"></i></div>`;root.appendChild(el);const canvas=el.querySelector('canvas');drawWave(canvas,t);el.addEventListener('pointerdown',e=>{if(e.target.closest('button,input'))return;if(e.target.closest('canvas')){const r=canvas.getBoundingClientRect();playOffset=clamp((e.clientX-r.left)/r.width*getDuration(tracks),0,getDuration(tracks));setClock(playOffset);if(playing&&!recording)startPlayback(tracks,playOffset)}selectedId=t.id;refreshSelected();document.querySelectorAll('.track').forEach(x=>x.classList.toggle('selected',x.dataset.id===t.id))});el.querySelector('.mute').onclick=()=>{t.mute=!t.mute;renderTracks();applyTrackMix()};el.querySelector('.solo').onclick=()=>{t.solo=!t.solo;renderTracks();applyTrackMix()};el.querySelector('.remove').onclick=()=>{if(!confirm(`「${t.name}」を削除しますか？`))return;tracks=tracks.filter(x=>x.id!==t.id);if(selectedId===t.id)selectedId=tracks[0]?.id||null;renderTracks();refreshSelected();refreshAll();applyTrackMix()};const vol=el.querySelector('.vol'),pan=el.querySelector('.pan');const updateVol=e=>{t.volume=+e.target.value;setOutput(el.querySelector('.vol+output'),Math.round(t.volume*100)+'%');applyTrackMix()};const updatePan=e=>{t.pan=+e.target.value;setOutput(el.querySelector('.pan+output'),t.pan.toFixed(2));applyTrackMix()};vol.addEventListener('input',updateVol);vol.addEventListener('change',updateVol);pan.addEventListener('input',updatePan);pan.addEventListener('change',updatePan)}
+$('#trackCount').textContent=`${tracks.length} tracks`}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function drawWave(canvas,t){const dpr=window.devicePixelRatio||1,w=Math.max(1,canvas.clientWidth),h=Math.max(1,canvas.clientHeight);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);const g=canvas.getContext('2d');g.scale(dpr,dpr);g.fillStyle='#121722';g.fillRect(0,0,w,h);g.strokeStyle='#343c4b';g.beginPath();g.moveTo(0,h/2);g.lineTo(w,h/2);g.stroke();const p=peaks(t.buffer),total=Math.max(getDuration(tracks),.001),pw=Math.max(1,Math.floor(w*t.buffer.duration/total));g.fillStyle=t.type==='inst'?'#7592ba':'#ed8755';for(let x=0;x<pw;x++){const a=Math.floor(x/pw*p.length),b=Math.max(a+1,Math.floor((x+1)/pw*p.length));let m=0;for(let i=a;i<b&&i<p.length;i++)if(p[i]>m)m=p[i];const hh=m*h*.44;g.fillRect(x,h/2-hh,1,Math.max(1,hh*2))}}
+const peakCache=new WeakMap();function peaks(b){let p=peakCache.get(b);if(!p){const d=b.getChannelData(0),step=Math.max(1,Math.ceil(d.length/4000));p=new Float32Array(Math.ceil(d.length/step));for(let i=0;i<p.length;i++){let m=0;for(let j=i*step,e=Math.min(d.length,j+step);j<e;j++){const a=Math.abs(d[j]);if(a>m)m=a}p[i]=m}peakCache.set(b,p)}return p}
+function refreshSelected(){const t=selectedTrack();$('#selectedType').textContent=t?(t.type==='vocal'?'VOCAL':'INSTRUMENT'):'未選択';$('#selectedInfo').textContent=t?`${t.name} — ${selectedStateText(t)}`:'編集するボーカルトラックを選択してください。';const vocal=!!t&&t.type==='vocal';for(const id of ['applyTune','applyDenoise','undoTrack'])$('#'+id).disabled=!vocal;$('#noiseEnd').max=t?Math.max(.05,t.buffer.duration):1;$('#noiseStart').max=t?Math.max(0,t.buffer.duration-.05):1;}
+function refreshAll(){renderTracks();refreshSelected();setClock(playOffset)}
+function activeTracks(list=tracks){const solo=list.some(t=>t.solo);return list.filter(t=>!t.mute&&(!solo||t.solo))}
+const impulseCache=new WeakMap();function makeImpulse(c,type){let cache=impulseCache.get(c);if(!cache){cache={};impulseCache.set(c,cache)}if(cache[type])return cache[type];const sec=type==='room'?.65:type==='plate'?2.2:2.9,decay=type==='room'?5.5:type==='plate'?2.7:2.1,b=c.createBuffer(2,Math.floor(c.sampleRate*sec),c.sampleRate);let sd=type==='room'?7:type==='plate'?13:29;const rnd=()=>(sd=(sd*1664525+1013904223)>>>0)/4294967296;for(let ch=0;ch<2;ch++){const a=b.getChannelData(ch);for(let i=0;i<a.length;i++){const env=Math.pow(1-i/a.length,decay);a[i]=(rnd()*2-1)*env*(type==='plate'?.7:1)}}cache[type]=b;return b}
+function shaperCurve(drive){const n=4096,a=new Float32Array(n),k=Math.pow(10,drive/20);for(let i=0;i<n;i++){const x=2*i/(n-1)-1;a[i]=Math.tanh(k*x)/Math.tanh(k)}return a}
+function createMixGraph(c,list=tracks){const masterSum=c.createGain(),vocalSum=c.createGain(),hpf=c.createBiquadFilter(),lpf=c.createBiquadFilter(),eq=[];hpf.type='highpass';lpf.type='lowpass';for(let i=0;i<8;i++){const f=c.createBiquadFilter();f.type='peaking';eq.push(f)}let prev=vocalSum;prev.connect(hpf);prev=hpf;for(const f of eq){prev.connect(f);prev=f}prev.connect(lpf);
+ const comp=c.createDynamicsCompressor(),makeup=c.createGain(),dry=c.createGain(),shaper=c.createWaveShaper(),satWet=c.createGain(),satDry=c.createGain(),revSend=c.createGain(),pre=c.createDelay(.3),conv=c.createConvolver(),revReturn=c.createGain(),delaySend=c.createGain(),delay=c.createDelay(2),feedback=c.createGain(),delayReturn=c.createGain(),mainSum=c.createGain(),master=c.createGain(),lim=c.createDynamicsCompressor(),clip=c.createWaveShaper(),an=c.createAnalyser();
+ lpf.connect(comp);comp.connect(makeup);makeup.connect(dry);dry.connect(mainSum);makeup.connect(satDry);satDry.connect(mainSum);makeup.connect(shaper);shaper.connect(satWet);satWet.connect(mainSum);makeup.connect(revSend);revSend.connect(pre);pre.connect(conv);conv.connect(revReturn);revReturn.connect(mainSum);makeup.connect(delaySend);delaySend.connect(delay);delay.connect(delayReturn);delay.connect(feedback);feedback.connect(delay);delayReturn.connect(mainSum);
+ const trackNodes=new Map();for(const t of list){const gain=c.createGain(),pan=c.createStereoPanner();gain.connect(pan);if(t.type==='vocal')pan.connect(vocalSum);else pan.connect(mainSum);trackNodes.set(t.id,{gain,pan})}
+ mainSum.connect(master);master.connect(lim);lim.connect(clip);clip.connect(an);an.connect(c.destination);
+ const g={c,list,masterSum,vocalSum,hpf,lpf,eq,comp,makeup,dry,shaper,satWet,satDry,revSend,pre,conv,revReturn,delaySend,delay,feedback,delayReturn,mainSum,master,lim,clip,an,trackNodes};applyGraphSettings(g);applyTrackMix(g);return g}
+function applyGraphSettings(g=graph){if(!g)return;const n=id=>+$('#'+id).value;g.hpf.frequency.value=n('hpf');g.lpf.frequency.value=n('lpf');g.hpf.Q.value=.707;g.lpf.Q.value=.707;for(let i=0;i<8;i++){const f=g.eq[i];f.frequency.value=clamp(n('eqf'+i),20,g.c.sampleRate*.48);f.gain.value=(state.eqOn&&$('#eqon'+i).checked)?n('eqg'+i):0;f.Q.value=clamp(n('eqq'+i),.1,18)}g.comp.threshold.value=state.compOn?n('threshold'):0;g.comp.ratio.value=state.compOn?n('ratio'):1;g.comp.attack.value=n('attack')/1000;g.comp.release.value=n('release')/1000;g.comp.knee.value=6;g.makeup.gain.value=Math.pow(10,n('makeup')/20);const dv=state.satOn?n('drive'):null;if(g.drv!==dv){g.drv=dv;g.shaper.curve=dv===null?null:shaperCurve(dv)}g.shaper.oversample='4x';g.dry.gain.value=1-(state.satOn?n('satMix')/100:0);g.satDry.gain.value=0;g.satWet.gain.value=state.satOn?n('satMix')/100:0;g.revSend.gain.value=state.revOn?n('revWet')/100:0;g.pre.delayTime.value=n('preDelay')/1000;const impulse=makeImpulse(g.c,$('#revType').value);if(g.conv.buffer!==impulse)g.conv.buffer=impulse;g.revReturn.gain.value=1;g.delay.delayTime.value=n('delayTime')/1000;g.feedback.gain.value=state.delayOn?n('feedback')/100:0;g.delaySend.gain.value=state.delayOn?n('delayWet')/100:0;g.delayReturn.gain.value=1;g.master.gain.value=n('masterVol')/100;g.lim.threshold.value=n('ceiling');const cl=Math.pow(10,n('ceiling')/20);if(g.clipV!==cl){g.clipV=cl;const cv=new Float32Array(1025);for(let i=0;i<1025;i++)cv[i]=clamp(2*i/1024-1,-cl,cl);g.clip.curve=cv}g.lim.knee.value=0;g.lim.ratio.value=20;g.lim.attack.value=.002;g.lim.release.value=.12;g.an.fftSize=1024}
+function applyTrackMix(g=graph){if(!g)return;const solo=g.list.some(t=>t.solo);for(const t of g.list){const nodes=g.trackNodes.get(t.id);if(!nodes)continue;nodes.gain.gain.value=(t.mute||(solo&&!t.solo))?0:t.volume;nodes.pan.pan.value=t.pan}}
+function killGraph(tail){const g=graph;if(g){if(!tail){try{g.master.gain.cancelScheduledValues(0);g.master.gain.setTargetAtTime(0,g.c.currentTime,.01)}catch(_){}}const list=sources;setTimeout(()=>{list.forEach(s=>{try{s.stop()}catch(_){}});try{g.lim.disconnect()}catch(_){}},tail?4500:120)}sources=[];graph=null}
+function stopPlayback(tail){killGraph(tail);playing=false;if(raf)cancelAnimationFrame(raf);raf=0;$('#play').textContent='▶ 再生';setClock(playOffset)}
+function startPlayback(list=tracks,offset=playOffset){if(!list.length){say('再生するトラックがありません');return}stopPlayback();const c=audio();graph=createMixGraph(c,list);sources=[];for(const t of list){const s=c.createBufferSource();s.buffer=t.buffer;s.connect(graph.trackNodes.get(t.id).gain);const off=clamp(offset,0,Math.max(0,t.buffer.duration-.001));if(t.buffer.duration>off)s.start(c.currentTime+.03,off);sources.push(s)}startAt=c.currentTime+.03-offset;recPlayT=c.currentTime+.03;playOffset=offset;playing=true;$('#play').textContent='■ 再生中';tick()}
+function tick(){if(!playing)return;const now=Math.max(0,audio().currentTime-startAt),d=getDuration(graph?.list||tracks);setClock(now);if(graph){const gr=Math.max(0,-graph.comp.reduction);$('#grMeter').style.width=clamp(gr*4,0,100)+'%';const data=new Uint8Array(graph.an.frequencyBinCount);graph.an.getByteTimeDomainData(data);let peak=0;for(const x of data)peak=Math.max(peak,Math.abs(x-128)/128);$('#peakMeter').style.width=clamp(peak*100,0,100)+'%'}playOffset=now;if(now>=d){playOffset=0;stopPlayback(true);return}raf=requestAnimationFrame(tick)}
+async function stopAll(){if(recording)await stopRecording();stopPlayback()}
+function playButton(){if(playing){stopPlayback();return}startPlayback(tracks,playOffset)}
+function setOutput(out,text){if(!out)return;out.value=String(text);out.textContent=String(text)}
+function syncOutputs(){
+ const mapping={hpf:v=>v+' Hz',lpf:v=>v>=1000?(v/1000).toFixed(v%1000?1:0)+' kHz':v+' Hz',threshold:v=>v+' dB',ratio:v=>v+':1',attack:v=>v+' ms',release:v=>v+' ms',makeup:v=>v+' dB',drive:v=>v+' dB',satMix:v=>v+'%',revWet:v=>v+'%',preDelay:v=>v+' ms',delayTime:v=>v+' ms',feedback:v=>v+'%',delayWet:v=>v+'%',masterVol:v=>v+'%',ceiling:v=>(+v).toFixed(1)+' dB',tuneAmount:v=>v+'%',tuneSpeed:v=>v,denoiseAmount:v=>v+'%',denoiseFloor:v=>v+' dB'};
+ for(const [id,fn] of Object.entries(mapping)){const el=$('#'+id),out=$('#'+id+'Out');if(el&&out)setOutput(out,fn(el.value))}
+ for(let i=0;i<8;i++){const f=+$('#eqf'+i).value,g=+$('#eqg'+i).value,q=+$('#eqq'+i).value;setOutput($('#eqf'+i+'Out'),f>=1000?(f/1000).toFixed(f%1000?2:1)+'k':f.toFixed(0));setOutput($('#eqg'+i+'Out'),g.toFixed(1)+' dB');setOutput($('#eqq'+i+'Out'),q.toFixed(1))}
+ // Keep mixer-track readouts in sync too, including touch-driven slider changes.
+ document.querySelectorAll('.track').forEach(row=>{const vol=row.querySelector('.vol'),pan=row.querySelector('.pan');if(vol)setOutput(vol.nextElementSibling,Math.round(+vol.value*100)+'%');if(pan)setOutput(pan.nextElementSibling,(+pan.value).toFixed(2))});drawEq();
+}
+function makeEqUI(){const root=$('#eqBands');for(let i=0;i<8;i++){const defaults=[80,180,350,700,1400,2800,5600,11000],d=defaults[i],el=document.createElement('div');el.className='eqband';el.innerHTML=`<div class="eqbandhead"><strong>Band ${i+1}</strong><label style="font-size:9px;color:var(--muted)"><input id="eqon${i}" type="checkbox" checked> ON</label></div><div class="eqparams"><div><label>Freq (Hz)</label><input id="eqf${i}" type="number" min="20" max="20000" step="1" value="${d}"><output id="eqf${i}Out">${d}</output></div><div><label>Gain</label><input id="eqg${i}" type="number" min="-24" max="24" step=".1" value="0"><output id="eqg${i}Out">0 dB</output></div><div><label>Q</label><input id="eqq${i}" type="number" min=".1" max="18" step=".1" value="1"><output id="eqq${i}Out">1.0</output></div></div>`;root.appendChild(el)}}
+function updateEqToggle(){if(!graph)return;for(let i=0;i<8;i++)graph.eq[i].gain.value=(state.eqOn&&$('#eqon'+i).checked)?+$('#eqg'+i).value:0}
+function syncToggleButtons(){for(const [id,key] of [['eqEnable','eqOn'],['compEnable','compOn'],['satEnable','satOn'],['revEnable','revOn'],['delayEnable','delayOn']]){const el=$('#'+id);if(el){el.textContent=state[key]?'ON':'OFF';el.classList.toggle('active',!!state[key])}}}
+function attachControls(){
+ let pend=0;const refresh=e=>{if(pend)return;pend=requestAnimationFrame(()=>{pend=0;syncOutputs();if(graph){applyGraphSettings(graph);updateEqToggle()}})};
+ document.querySelectorAll('input[type=range],input[type=number],select').forEach(el=>{
+  // 'input' updates continuously; 'change' is a compatibility fallback for mobile Safari.
+  el.addEventListener('input',refresh,{passive:true});
+  el.addEventListener('change',refresh,{passive:true});
+  if(el.type==='range'){
+   // Some touch browsers dispatch sparse input events while dragging. Refresh on each move as well.
+   el.addEventListener('pointermove',e=>{if(e.buttons||e.pressure>0)refresh(e)},{passive:true});
+   el.addEventListener('touchmove',refresh,{passive:true});
+  }
+ });
+ for(const [id,key] of [['eqEnable','eqOn'],['compEnable','compOn'],['satEnable','satOn'],['revEnable','revOn'],['delayEnable','delayOn']])$('#'+id).onclick=()=>{state[key]=!state[key];$('#'+id).textContent=state[key]?'ON':'OFF';$('#'+id).classList.toggle('active',state[key]);applyGraphSettings();drawEq()};
+ for(let i=0;i<8;i++)for(const id of [`eqf${i}`,`eqg${i}`,`eqq${i}`,$('#eqon'+i).id])$('#'+id).addEventListener('change',()=>{syncOutputs();updateEqToggle()});
+ $('#hpf').oninput=$('#lpf').oninput=()=>{syncOutputs();applyGraphSettings()};$('#revType').onchange=()=>applyGraphSettings();
+}
+function wavEncode(buffer,bits=24){const ch=Math.min(2,buffer.numberOfChannels),sr=buffer.sampleRate,n=buffer.length,isFloat=bits==='32f'||bits===32,bit=isFloat?32:+bits,bytes=bit/8,dataBytes=n*ch*bytes,ab=new ArrayBuffer(44+dataBytes),v=new DataView(ab),write=(o,s)=>{for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i))};write(0,'RIFF');v.setUint32(4,36+dataBytes,true);write(8,'WAVE');write(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,isFloat?3:1,true);v.setUint16(22,ch,true);v.setUint32(24,sr,true);v.setUint32(28,sr*ch*bytes,true);v.setUint16(32,ch*bytes,true);v.setUint16(34,bit,true);write(36,'data');v.setUint32(40,dataBytes,true);const D=[];for(let c=0;c<ch;c++)D.push(buffer.getChannelData(c));let o=44;for(let i=0;i<n;i++)for(let c=0;c<ch;c++){const x=clamp(D[c][i],-1,1);if(isFloat){v.setFloat32(o,x,true);o+=4}else if(bit===16){v.setInt16(o,clamp(Math.round(x*32767+Math.random()-Math.random()),-32768,32767),true);o+=2}else{let z=Math.round(x*8388607);if(z<0)z+=16777216;v.setUint8(o,z&255);v.setUint8(o+1,(z>>8)&255);v.setUint8(o+2,(z>>16)&255);o+=3}}return ab}
+function downloadBlob(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000)}
+async function exportAudio(){if(recording){say('書き出す前に録音を停止してください');return}if(!tracks.length){say('書き出す音声がありません');return}await stopAll();const mode=$('#exportMode').value;let list=mode==='selected'?[selectedTrack()].filter(Boolean):mode==='vocal'?tracks.filter(t=>t.type==='vocal'):mode==='inst'?tracks.filter(t=>t.type==='inst'):tracks;if(!list.length){say('書き出し対象のトラックがありません');return}const fb=+$('#feedback').value/100,dl=+$('#delayTime').value/1000,tail=1+(state.revOn?3.5:0)+(state.delayOn&&fb>0?Math.min(10,dl*Math.log(.001)/Math.log(Math.max(.05,fb))):0),d=getDuration(list)+tail,sr=ctx?.sampleRate||44100;try{say('OfflineAudioContextでミックスを書き出しています…');const off=new OfflineAudioContext(2,Math.ceil(d*sr),sr),g=createMixGraph(off,list);for(const t of list){const s=off.createBufferSource();s.buffer=t.buffer;s.connect(g.trackNodes.get(t.id).gain);s.start(0)}const rendered=await off.startRendering(),bits=$('#bitDepth').value;downloadBlob(new Blob([wavEncode(rendered,bits)],{type:'audio/wav'}),`oto-${mode}-${bits}bit.wav`);say('WAVを書き出しました')}catch(e){console.error(e);say('書き出しに失敗しました: '+e.message)}}
+function blobToBase64(blob){return new Promise((res,rej)=>{const f=new FileReader();f.onload=()=>res(String(f.result).split(',')[1]);f.onerror=rej;f.readAsDataURL(blob)})}
+function base64ToBlob(b64,type){const binary=atob(b64),u8=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)u8[i]=binary.charCodeAt(i);return new Blob([u8],{type})}
+async function saveProject(){if(!tracks.length){say('保存するトラックがありません');return}try{say('音声データをプロジェクトに格納しています…');const audioItems=[];for(const t of tracks){const wav=new Blob([wavEncode(t.buffer,24)],{type:'audio/wav'});audioItems.push({id:t.id,name:t.name,type:t.type,volume:t.volume,pan:t.pan,mute:t.mute,solo:t.solo,wav:await blobToBase64(wav)})}const obj={format:'OtoDAWStudioProject',version:4,savedAt:new Date().toISOString(),controls:controlSnapshot(),state,selectedId,playOffset,tracks:audioItems};downloadBlob(new Blob([JSON.stringify(obj)],{type:'application/json'}),'oto-daw-studio-project.otodaw');say(`音声込みプロジェクトを保存しました（${tracks.length} tracks / ${Math.round(audioItems.reduce((s,t)=>s+t.wav.length,0)/1024)} KB base64）`)}catch(e){console.error(e);say('プロジェクト保存に失敗しました: '+e.message)}}
+async function loadProjectFile(file){await stopAll();try{const obj=JSON.parse(await file.text());if(obj.format!=='OtoDAWStudioProject'||!Array.isArray(obj.tracks))throw Error('Oto DAW Studioのプロジェクトではありません');const c=audio(),loaded=[];for(const item of obj.tracks){const blob=base64ToBlob(item.wav,'audio/wav'),buffer=await decodeAB(await blob.arrayBuffer());loaded.push({id:item.id||uid(),name:item.name||'Audio',type:item.type==='inst'?'inst':'vocal',buffer,volume:+item.volume||0,pan:+item.pan||0,mute:!!item.mute,solo:!!item.solo,undoBuffer:null})}tracks=loaded;selectedId=trackById(obj.selectedId)?.id||loaded[0]?.id||null;const ctl={...(obj.controls||{})};if((obj.version||0)<4)delete ctl.denoiseFloor;restoreControls(ctl);Object.assign(state,obj.state||{});syncToggleButtons();applyGraphSettings();updateEqToggle();playOffset=+obj.playOffset||0;renderTracks();refreshSelected();refreshAll();say(`プロジェクトを読み込みました（${tracks.length} tracks）`)}catch(e){console.error(e);say('読込失敗: '+e.message)}}
+async function newProject(){if(!confirm('現在のトラックと編集状態を破棄して新規プロジェクトを作成しますか？'))return;await stopAll();tracks=[];selectedId=null;playOffset=0;restoreControls({});Object.assign(state,{eqOn:true,compOn:true,satOn:false,revOn:true,delayOn:false});syncToggleButtons();renderTracks();refreshSelected();refreshAll();say('新規プロジェクトを作成しました')}
+
+// FFT, used by the offline spectral denoiser and pitch correction.
+function fft(re,im,inverse=false){
+ const n=re.length;
+ if((n&(n-1))!==0)throw new Error('FFT length must be a power of two');
+ for(let i=1,j=0;i<n;i++){
+  let bit=n>>1;
+  while(j&bit){j^=bit;bit>>=1}
+  j^=bit;
+  if(i<j){let tr=re[i];re[i]=re[j];re[j]=tr;tr=im[i];im[i]=im[j];im[j]=tr}
+ }
+ for(let len=2;len<=n;len<<=1){
+  const angle=(inverse?2:-2)*Math.PI/len,wLenR=Math.cos(angle),wLenI=Math.sin(angle);
+  for(let start=0;start<n;start+=len){
+   let wr=1,wi=0;
+   for(let j=0;j<len/2;j++){
+    const i0=start+j,i1=i0+len/2;
+    const uR=re[i0],uI=im[i0],vR=re[i1]*wr-im[i1]*wi,vI=re[i1]*wi+im[i1]*wr;
+    re[i0]=uR+vR;im[i0]=uI+vI;re[i1]=uR-vR;im[i1]=uI-vI;
+    const nextWr=wr*wLenR-wi*wLenI;wi=wr*wLenI+wi*wLenR;wr=nextWr;
+   }
+  }
+ }
+ if(inverse)for(let i=0;i<n;i++){re[i]/=n;im[i]/=n}
+}
+const hannCache={};function hann(n){if(!hannCache[n]){const a=new Float32Array(n);for(let i=0;i<n;i++)a[i]=.5-.5*Math.cos(2*Math.PI*i/(n-1));hannCache[n]=a}return hannCache[n]}
+const yieldUI=()=>new Promise(r=>setTimeout(r,0));
+async function denoiseBuffer(buffer,noiseStart,noiseEnd,amount,floorPct){const N=2048,H=512,w=hann(N),floor=Math.pow(10,-floorPct/20),out=[];for(let ch=0;ch<buffer.numberOfChannels;ch++){const input=buffer.getChannelData(ch),n=input.length,noise=new Float64Array(N/2+1);let noiseFrames=0;let re=new Float32Array(N),im=new Float32Array(N);const startS=clamp(noiseStart,0,buffer.duration),endS=clamp(noiseEnd,startS+.05,buffer.duration);const sampleStart=Math.floor(startS*buffer.sampleRate),sampleEnd=Math.min(n,Math.floor(endS*buffer.sampleRate));for(let p=sampleStart-N/2;p<sampleEnd;p+=H){for(let j=0;j<N;j++){const k=p+j;re[j]=(k>=sampleStart&&k<sampleEnd?input[k]:0)*w[j];im[j]=0}fft(re,im);for(let k=0;k<=N/2;k++)noise[k]+=Math.hypot(re[k],im[k]);noiseFrames++}if(!noiseFrames)throw Error('ノイズサンプル区間が短すぎます');for(let k=0;k<noise.length;k++)noise[k]/=noiseFrames;if(!noise.some(v=>v>1e-6))throw Error('ノイズサンプル区間が無音です。「ノイズ区間を自動検出」を試してください');
+ const extLen=n+N,acc=new Float32Array(extLen),weight=new Float32Array(extLen),maskPrev=new Float32Array(N/2+1).fill(1);let frame=0;for(let p=-N/2;p<n+N/2;p+=H){for(let j=0;j<N;j++){const idx=p+j;re[j]=(idx>=0&&idx<n?input[idx]:0)*w[j];im[j]=0}fft(re,im);const mags=new Float32Array(N/2+1);for(let k=0;k<mags.length;k++)mags[k]=Math.hypot(re[k],im[k]);const masks=new Float32Array(mags.length);for(let k=0;k<mags.length;k++){const estimate=noise[k]*1.35,raw=1-(amount/100)*Math.min(1.15,estimate/(mags[k]+1e-8));const smooth=(masks[k-1]??raw)*.22+raw*.56+(mags[k+1]!==undefined?(1-(amount/100)*Math.min(1.15,noise[k+1]*1.35/(mags[k+1]+1e-8)))*.22:raw*.22);const temporal=smooth>maskPrev[k]?smooth:maskPrev[k]*.55+smooth*.45;masks[k]=Math.max(floor,temporal);maskPrev[k]=masks[k]}for(let k=0;k<=N/2;k++){re[k]*=masks[k];im[k]*=masks[k];if(k>0&&k<N/2){re[N-k]=re[k];im[N-k]=-im[k]}}fft(re,im,true);for(let j=0;j<N;j++){const idx=p+j+N/2;if(idx>=0&&idx<extLen){acc[idx]+=re[j]*w[j];weight[idx]+=w[j]*w[j]}}frame++;if(frame%100===0){say(`ノイズ除去処理中… ${Math.min(99,Math.round(frame*H/n*100))}%`);await yieldUI()}}const result=new Float32Array(n);for(let i=0;i<n;i++)result[i]=weight[i+N/2]>.00001?acc[i+N/2]/weight[i+N/2]:input[i];out.push(result)}const b=audio().createBuffer(buffer.numberOfChannels,buffer.length,buffer.sampleRate);out.forEach((a,i)=>b.copyToChannel(a,i));return b}
+function parseScale(value){if(value==='chromatic')return Array.from({length:12},(_,i)=>i);const [root,mode]=value.split(':');const roots={'C':0,'C#':1,'Db':1,'D':2,'D#':3,'Eb':3,'E':4,'F':5,'F#':6,'Gb':6,'G':7,'G#':8,'Ab':8,'A':9,'A#':10,'Bb':10,'B':11};const major=[0,2,4,5,7,9,11],minor=[0,2,3,5,7,8,10];return (mode==='min'?minor:major).map(x=>(roots[root]+x)%12)}
+function nearestMidi(midi,scale){let best=Math.round(midi),dist=99;for(let o=-1;o<=1;o++)for(const pc of scale){const cand=Math.floor(midi/12)*12+pc+o*12,d=Math.abs(cand-midi);if(d<dist){dist=d;best=cand}}return best}
+function estimateF0(x,sr){const n=x.length;let mean=0;for(let i=0;i<n;i++)mean+=x[i];mean/=n;const y=new Float32Array(n);let energy=0;for(let i=0;i<n;i++){const z=(x[i]-mean)*(.5-.5*Math.cos(2*Math.PI*i/(n-1)));y[i]=z;energy+=z*z}if(energy/n<1e-6)return 0;const minLag=Math.max(8,Math.floor(sr/1000)),maxLag=Math.min(Math.floor(sr/60),n-4);let best=0,bestCorr=0,prev=0;for(let lag=minLag;lag<=maxLag;lag++){let sum=0,a=0,b=0;for(let i=0;i<n-lag;i++){const u=y[i],v=y[i+lag];sum+=u*v;a+=u*u;b+=v*v}const corr=sum/Math.sqrt((a*b)+1e-15);if(corr>bestCorr){bestCorr=corr;best=lag;prev=corr}}if(bestCorr<.52||!best)return 0;let lag=best;if(best>minLag&&best<maxLag){const corrAt=l=>{let s=0,a=0,b=0;for(let i=0;i<n-l;i++){const u=y[i],v=y[i+l];s+=u*v;a+=u*u;b+=v*v}return s/Math.sqrt(a*b+1e-15)};const l=corrAt(best-1),c=corrAt(best),r=corrAt(best+1),den=l-2*c+r;if(Math.abs(den)>1e-8)lag+=clamp(.5*(l-r)/den,-.5,.5)}return sr/lag}
+function pitchMap(buffer,key,amount,speed){
+ const sr=buffer.sampleRate,factor=Math.max(1,Math.round(sr/11025)),effSr=sr/factor;
+ const grain=Math.max(2048,Math.round(sr*.12)),hop=Math.floor(grain/2),scale=parseScale(key),channels=[];
+ for(let ch=0;ch<buffer.numberOfChannels;ch++){
+  const input=buffer.getChannelData(ch),n=input.length,acc=new Float64Array(n),weight=new Float32Array(n),ds=new Float32Array(512);let smoothedMidi=null,srcCenter=0;
+  const readAt=pos=>{pos=clamp(pos,0,n-1);const i=Math.floor(pos),f=pos-i;return input[i]*(1-f)+input[Math.min(n-1,i+1)]*f};
+  for(let center=0;center<n+hop;center+=hop){srcCenter=center;
+   ds.fill(0);for(let j=0;j<ds.length;j++){const ix=Math.round(srcCenter)+(j-256)*factor;ds[j]=(ix>=0&&ix<n)?input[ix]:0}
+   const f0=estimateF0(ds,effSr);let ratio=1;
+   if(f0>0){const midi=69+12*Math.log2(f0/440),target=nearestMidi(midi,scale),desired=midi+(target-midi)*(amount/100);if(smoothedMidi===null)smoothedMidi=midi;const alpha=.025+(speed/100)*.975;smoothedMidi+=(desired-smoothedMidi)*alpha;ratio=clamp(Math.pow(2,(smoothedMidi-midi)/12),.5,2)}else smoothedMidi=null;
+   const left=center-grain/2,right=center+grain/2,from=Math.max(0,Math.floor(left)),to=Math.min(n,Math.ceil(right));
+   for(let i=from;i<to;i++){const phase=(i-left)/(grain-1),win=.5-.5*Math.cos(2*Math.PI*phase),source=srcCenter+(i-center)*ratio;acc[i]+=readAt(source)*win;weight[i]+=win}
+   
+  }
+  const output=new Float32Array(n);for(let i=0;i<n;i++)output[i]=weight[i]>1e-5?acc[i]/weight[i]:input[i];channels.push(output)
+ }
+ const result=audio().createBuffer(buffer.numberOfChannels,buffer.length,buffer.sampleRate);channels.forEach((a,i)=>result.copyToChannel(a,i));return result
+}
+async function runTune(){const t=selectedTrack();if(!t||t.type!=='vocal'){say('ボーカルトラックを選択してください');return}lockProcessing(true);try{const amount=+$('#tuneAmount').value,speed=+$('#tuneSpeed').value,key=$('#tuneKey').value;say('ピッチ補正を開始しています…');await yieldUI();const result=pitchMap(t.buffer,key,amount,speed);t.undoBuffer=t.buffer;t.buffer=result;renderTracks();refreshSelected();say('ピッチ補正を適用しました。直前の処理を戻すこともできます')}catch(e){console.error(e);say('ピッチ補正に失敗しました: '+e.message)}finally{lockProcessing(false)}}
+async function runDenoise(){const t=selectedTrack();if(!t||t.type!=='vocal'){say('ボーカルトラックを選択してください');return}const st=+$('#noiseStart').value,en=+$('#noiseEnd').value;if(!(en>st)||en>t.buffer.duration){say('ノイズサンプルの開始・終了を確認してください');return}lockProcessing(true);try{say('ノイズプロファイルを分析しています…');await yieldUI();const result=await denoiseBuffer(t.buffer,st,en,+$('#denoiseAmount').value,+$('#denoiseFloor').value);t.undoBuffer=t.buffer;t.buffer=result;renderTracks();refreshSelected();say('スペクトルノイズ除去を適用しました。直前の処理を戻すこともできます')}catch(e){console.error(e);say('ノイズ除去に失敗しました: '+e.message)}finally{lockProcessing(false)}}
+function lockProcessing(on){$('#app').classList.toggle('processing',on);for(const id of ['applyTune','applyDenoise','undoTrack'])$('#'+id).disabled=on||!selectedTrack()||selectedTrack().type!=='vocal'}
+function undoTrack(){const t=selectedTrack();if(!t?.undoBuffer){say('戻せる処理がありません');return}t.buffer=t.undoBuffer;t.undoBuffer=null;renderTracks();refreshSelected();say('直前の処理を取り消しました')}
+
+async function ensureWorklet(c){if(!c.audioWorklet||!window.AudioWorkletNode)return false;if(!workletURL){const code=`class OtoRecorderProcessor extends AudioWorkletProcessor{constructor(){super();this.buf=new Float32Array(4096);this.ptr=0;this.port.onmessage=e=>{if(e.data&&e.data.type==='flush'){if(this.ptr){const tail=this.buf.slice(0,this.ptr);this.ptr=0;this.port.postMessage(tail,[tail.buffer])}this.port.postMessage({flushed:true})}}}process(inputs,outputs){const input=inputs[0];const output=outputs[0];if(output)for(const ch of output)ch.fill(0);if(input&&input.length){const a=input[0],b=input[1];for(let i=0;i<a.length;i++){const v=b?(a[i]+b[i])*.5:a[i];this.buf[this.ptr++]=v;if(this.ptr===this.buf.length){const chunk=this.buf;this.buf=new Float32Array(4096);this.ptr=0;this.port.postMessage(chunk,[chunk.buffer])}}}return true}}registerProcessor('oto-recorder',OtoRecorderProcessor);`;workletURL=URL.createObjectURL(new Blob([code],{type:'text/javascript'}))}if(!c._oto){await c.audioWorklet.addModule(workletURL);c._oto=1}return true}
+async function startRecording(){if(recording)return;try{const c=audio();if(!navigator.mediaDevices?.getUserMedia)throw Error('このブラウザではマイク録音を利用できません。HTTPSで開いてください');const stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false,channelCount:1}});recStream=stream;recChunks=[];recStartOffset=tracks.length?playOffset:0;const src=c.createMediaStreamSource(stream),silent=c.createGain();silent.gain.value=0;try{recWorklet=await ensureWorklet(c)}catch(e){console.warn('AudioWorklet unavailable; fallback:',e);recWorklet=false}if(recWorklet){const node=new AudioWorkletNode(c,'oto-recorder',{numberOfInputs:1,numberOfOutputs:1,outputChannelCount:[1],channelCount:1,channelCountMode:'explicit'});node.port.onmessage=e=>{if(recording&&e.data instanceof Float32Array)recChunks.push(new Float32Array(e.data))};src.connect(node);node.connect(silent);silent.connect(c.destination);recNode={src,node,silent}}else{const node=c.createScriptProcessor(2048,1,1);node.onaudioprocess=e=>{if(recording)recChunks.push(new Float32Array(e.inputBuffer.getChannelData(0)))};src.connect(node);node.connect(silent);silent.connect(c.destination);recNode={src,node,silent};say('AudioWorklet非対応のため、ScriptProcessorで録音します（互換モード）')}recPlayT=0;recT0=c.currentTime;recording=true;$('#record').textContent='■ 録音停止';$('#engineBadge').textContent=recWorklet?'AudioWorklet REC':'Fallback REC';if(tracks.length)startPlayback(tracks,playOffset);say(recWorklet?'AudioWorklet録音中 — 入力データをローカル保存しています':'互換モードで録音中');}catch(e){console.error(e);if(recStream){recStream.getTracks().forEach(t=>t.stop());recStream=null}say('録音を開始できません: '+e.message)}}
+async function stopRecording(){if(!recording)return;if(recWorklet&&recNode?.node?.port){const port=recNode.node.port;await new Promise(resolve=>{const old=port.onmessage;const timer=setTimeout(()=>{port.onmessage=old;resolve()},250);port.onmessage=e=>{if(e.data instanceof Float32Array&&e.data.length)recChunks.push(new Float32Array(e.data));if(e.data?.flushed){clearTimeout(timer);port.onmessage=old;resolve()}};port.postMessage({type:'flush'})})}recording=false;stopPlayback();const n=recChunks.reduce((s,a)=>s+a.length,0),data=new Float32Array(n);let p=0;for(const a of recChunks){data.set(a,p);p+=a.length}if(n){const sr=audio().sampleRate,lat=recPlayT?recPlayT-recT0+(+$('#recLatency').value||0)/1000:0,sk=clamp(Math.round(lat*sr),0,n-1),pad=Math.round(recStartOffset*sr),b=audio().createBuffer(1,n-sk+pad,sr);b.getChannelData(0).set(data.subarray(sk),pad);addTrack(b,`Vocal Rec ${new Date().toLocaleTimeString()}`,'vocal')}if(recNode){try{recNode.node.port&&(recNode.node.port.onmessage=null);recNode.node.onaudioprocess=null;recNode.src.disconnect();recNode.node.disconnect();recNode.silent.disconnect()}catch(_){}recNode=null}if(recStream){recStream.getTracks().forEach(t=>t.stop());recStream=null}recChunks=[];$('#record').textContent='● 録音';$('#engineBadge').textContent='Web Audio';refreshAll();say(n?'録音を新規ボーカルトラックとして保存しました':'録音データがありません')}
+
+$('#instInput').onchange=async e=>{await loadFiles(e.target.files,'inst');e.target.value=''};$('#vocalInput').onchange=async e=>{await loadFiles(e.target.files,'vocal');e.target.value=''};$('#record').onclick=()=>recording?stopRecording():startRecording();$('#play').onclick=playButton;$('#stop').onclick=stopAll;$('#export').onclick=exportAudio;$('#saveProject').onclick=saveProject;$('#projectInput').onchange=e=>{const f=e.target.files[0];if(f)loadProjectFile(f);e.target.value=''};$('#newProject').onclick=newProject;$('#applyTune').onclick=runTune;$('#applyDenoise').onclick=runDenoise;$('#undoTrack').onclick=undoTrack;$('#autoNoise').onclick=autoNoise;
+$('#pickInst').onclick=()=>{audio();$('#instInput').click()};$('#pickVocal').onclick=()=>{audio();$('#vocalInput').click()};$('#pickProject').onclick=()=>$('#projectInput').click();
+addEventListener('dragover',e=>e.preventDefault());
+addEventListener('drop',e=>{e.preventDefault();const fs=[...(e.dataTransfer?.files||[])],pj=fs.find(f=>/\.(otodaw|json)$/i.test(f.name));if(pj){loadProjectFile(pj);return}if(fs.length)loadFiles(fs,tracks.some(t=>t.type==='inst')?'vocal':'inst')});
+let eqBank=null;
+function setClock(now){const d=getDuration(tracks);$('#clock').textContent=`${fmt(now)} / ${fmt(d)}`;$('#trackList').style.setProperty('--ph',d?clamp(now/d*100,0,100):0)}
+function autoNoise(){const t=selectedTrack();if(!t){say('トラックを選択してください');return}const d=t.buffer.getChannelData(0),sr=t.buffer.sampleRate,W=Math.round(sr*.5),S=Math.round(sr*.1);let best=-1,e=1e9;for(let p=0;p+W<=d.length;p+=S){let s=0;for(let i=p;i<p+W;i+=8)s+=d[i]*d[i];if(s>1e-9&&s<e){e=s;best=p}}if(best<0){say('ノイズ区間を検出できませんでした');return}$('#noiseStart').value=(best/sr).toFixed(2);$('#noiseEnd').value=(best/sr+.5).toFixed(2);say(`ノイズサンプルを ${(best/sr).toFixed(2)} 秒付近に設定しました`)}
+function drawEq(){const cv=$('#eqCurve');if(!cv)return;const r=devicePixelRatio||1,W=Math.max(1,cv.clientWidth*r|0),H=Math.max(1,cv.clientHeight*r|0);if(cv.width!==W||cv.height!==H){cv.width=W;cv.height=H}
+ if(!eqBank){const oc=new OfflineAudioContext(1,1,48000),mk=t=>{const f=oc.createBiquadFilter();f.type=t;return f};eqBank=[mk('highpass'),...Array.from({length:8},()=>mk('peaking')),mk('lowpass')]}
+ const n=id=>+$('#'+id).value||0,b=eqBank;b[0].frequency.value=n('hpf');b[0].Q.value=.707;b[9].frequency.value=Math.min(n('lpf'),23000);b[9].Q.value=.707;
+ for(let i=0;i<8;i++){const f=b[i+1];f.frequency.value=clamp(n('eqf'+i)||1000,20,20000);f.gain.value=(state.eqOn&&$('#eqon'+i).checked)?n('eqg'+i):0;f.Q.value=clamp(n('eqq'+i)||1,.1,18)}
+ const NP=200,fr=new Float32Array(NP),mg=new Float32Array(NP),ph=new Float32Array(NP),tt=new Float32Array(NP).fill(1),g=cv.getContext('2d');
+ for(let i=0;i<NP;i++)fr[i]=20*Math.pow(1000,i/(NP-1));
+ b.forEach(f=>{f.getFrequencyResponse(fr,mg,ph);for(let i=0;i<NP;i++)tt[i]*=mg[i]});
+ g.clearRect(0,0,W,H);g.fillStyle='#303746';g.fillRect(0,H/2,W,1);[100,1000,10000].forEach(f=>g.fillRect(W*Math.log10(f/20)/3,0,1,H));
+ g.strokeStyle='#ed8755';g.lineWidth=2*r;g.beginPath();for(let i=0;i<NP;i++){const y=H/2-clamp(20*Math.log10(tt[i]),-24,24)/24*H*.46;i?g.lineTo(W*i/(NP-1),y):g.moveTo(0,y)}g.stroke()}
+makeEqUI();attachControls();syncOutputs();refreshSelected();syncToggleButtons();
+window.addEventListener('resize',()=>{drawEq();document.querySelectorAll('.track').forEach(el=>{const t=trackById(el.dataset.id),cv=el.querySelector('canvas');if(t&&cv)drawWave(cv,t)})});
+$('#clock').textContent=`${fmt(0)} / ${fmt(0)}`;
+</script>
+</body>
+</html>
